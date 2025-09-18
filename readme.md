@@ -200,3 +200,39 @@ __________________________________________________________
       }  
 
       *index e show, alla fine, non avranno questi contenuti, ma iniziamo almeno a creare uno scheletro all'interno del controller!*
+
+____________________________________________________
+
+5) ROUTER
+
+  creiamo ora il router di movies, in questo caso creiamo la cartella routers con il file moviesRouter.js
+
+    al suo interno:
+
+      // importiamo express
+      const express = require('express');
+
+      // importiamo router
+      const router = express.Router();
+
+      // importiamo il controller
+      const moviesController = require("../controllers/moviesController");
+
+      // definizione delle rotte
+      // index
+      router.get('/', moviesController.index);
+
+      // show
+      router.get('/:id', moviesController.show);
+
+      module.exports = router;
+
+    *questi ci serviranno poi su postman per vedere i risultati!*
+
+    creato quindi il router, andiamo in app.js e importiamo il router!
+
+      //importo il router
+      const moviesRouter = require("./routers/moviesRouter");
+
+      //definisco le rotte per i movies
+      app.use("/movies", moviesRouter);

@@ -8,10 +8,16 @@ const app = express();
 //definisco il numero di porta sul cui deve girare l'applicazione
 const port = 3000;
 
+//importo il router
+const moviesRouter = require("./routers/moviesRouter");
+
 //definisco la rotta base
 app.get("/", (req,res) =>{
     res.send("rotta base del mio blog")
 });
+
+//definisco le rotte per i movies
+app.use("/movies", moviesRouter);
 
 //dico al server di rimanere in ascolto sulla porta 3000
 app.listen(port, () =>{
