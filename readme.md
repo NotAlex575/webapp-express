@@ -126,6 +126,49 @@ __________________________________________________________
 
         5) Diciamo al server di rimanere in ascolto sulla porta 3000:
             app.listen(port, () => { /* messaggio */ })
+        
+        6) creo la cartella data, con all'interno il file db.js
+
+        *questo servirà a noi per collegarci direttamente al database che abbiamo!*
+
+        il suo contenuto sara questo:
+
+        __
+
+            // importiamo mysql2
+            const mysql = require("mysql2");
+
+            // creo la connessione 
+            // NOTA: in password, user e database, inserisci i dati che hai messo quando hai creato il MySQL Connections!
+
+            const connection = mysql.createConnection({
+                host: "localhost",
+                user: "root",
+                password: "password", 
+                database: "db_movies",
+                port: 3306
+            });
+
+            // stabilisco la connessione al db
+            connection.connect((err) => {
+                if (err) {
+                    console.log(`Errore nella connessione al db: ${err}`);
+                } else {
+                    console.log("Connessione al db avvenuta correttamente");
+                }
+            });
+
+            //esporto connection
+            module.exports = connection;
+
+        __
+
+        7) in app.js, sotto a const express, ci aggiungiamo questo:
+
+            //connessione con il database in app.js
+            const connection = require("./data/db");
+
+        *cosi app.js sarà collegato col database!*
    
 
 
