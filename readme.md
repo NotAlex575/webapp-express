@@ -309,3 +309,40 @@ __________________________________________________________
       IMPORTANTE! inseriamo davanti 1 siccome sarà l'id da ricercare del movie
 
       se tutto va bene, su postman comparirà il singolo elemento del movie 
+
+_______________________________________________________________________________________________________________
+
+EXTRA:
+
+8) MIDDLEWARE:
+
+    inseriamo i 2 middleware richiesti nell'esercizio!
+
+    prima, creiamo la cartella middlewares, e creiamo 2 file:
+
+    1) errorsHandler -> gestisce gli errori del programma (con un return 500 e l'error message)
+
+        in questo file ci inseriamo:
+
+        const errorsHandler = (err, req, res, next) => {
+            //inernal server error
+            res.status(500).json({
+                error: err.message
+            })
+        }
+
+        module.exports = errorsHandler;
+
+    2) notFound -> gestisce l'errore 404, ovvero ci invia una risposta, in cui la pagina non è stata trovata
+
+        in questo file ci inseriamo:
+
+        const notFound = (req, res, next) =>{
+            res.status(404).json({
+                error: "404 not found",
+                message: "Pagina non trovata"
+            })
+        }
+        module.exports = notFound;
+
+        in questo modo, la webapp adesso gestisce automaticamente gli errori sopra indicati!
