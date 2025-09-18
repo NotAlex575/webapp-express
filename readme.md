@@ -171,4 +171,32 @@ __________________________________________________________
         *cosi app.js sarà collegato col database!*
    
 
+__________________________________________________________
 
+3) CREAZIONE CONTROLLER:
+
+     1) creiamo una cartella controllers e ci mettiamo un file chiamato moviesController.js, dove al suo interno inseriremo tutte le query!
+
+    2) creiamo le varie constanti (index, show, ...)
+
+      struttura:
+
+      //importiamo la connessione la db
+      const connection = require("../data/db");
+
+      //index
+      const index = (req, res) => {
+          console.log("Metodo index")
+      }
+
+      //show
+      const show = (req, res) => {
+          console.log("Metodo show")
+      }
+
+      module.exports = {
+          index,
+          show
+      }  
+
+      *index e show, alla fine, non avranno questi contenuti, ma iniziamo almeno a creare uno scheletro all'interno del controller!*
