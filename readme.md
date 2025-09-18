@@ -236,3 +236,76 @@ ____________________________________________________
 
       //definisco le rotte per i movies
       app.use("/movies", moviesRouter);
+
+__________________________________________________________
+
+6) QUERY
+
+ora creiamo delle query nel controller!
+
+  1) in controllers/moviesController.js modifichiamo index e show in questa maniera:
+
+    //index => recuperiamo tutta la tabella libri
+
+    const index = (req, res) => {
+      const sql = "SELECT * FROM movies";
+
+      //controlliamo se la query inserita è stata eseguita con successo
+      connection.query(sql, (err, results) =>{
+          if(err) 
+              return res.status(500).json({error: "Errore durante la esecuzione della query: "+err});
+          res.json(results);
+          console.log("index eseguito con successo!")
+      })
+    }
+
+    //show => recuperiamo il singolo elemento di un movie 
+
+      //prendiamo l'id inserito su postman
+      const { id } = req.params;
+
+      //definizione della query da eseguire
+      const sql = "SELECT * FROM movies WHERE id = ?";
+
+      //controlliamo se la query inserita è stata eseguita con successo
+      connection.query(sql, [id], (err, results) => {
+          if(err)
+              return res.status(500).json({ error: "errore nell'esecuzione della query: "+err});
+          res.json(results);
+          console.log("show eseguito con successo!")
+      })
+
+    *questi andranno a sostituire i console.log, in modo tale che dopo su postman troveremo come risultati la tabella!*
+
+__________________________________________________________
+
+7) TEST POSTMAN
+    ora che abbiamo index e show, testiamo il tutto con postman!
+
+    1) INIZIALIZZAZIONE POSTMAN
+
+      1) apri postman
+
+      2) crea una nuova connessione => blank collection (chiamiamola movies)
+
+    2) CREAZIONE REQUEST (INDEX)
+
+      1) clicchiamo sul + vicino alla new connection (si genera cosi un get chiamato new request)
+
+      2) chiamiamolo index, ed inseriamo l'url:
+
+      http://localhost:3000/movies
+      
+      se tutto va bene, su postman comparirà l'intera lista dei books!
+
+    3) CREAZIONE REQUEST (SHOW)
+
+      1) clicchiamo sul + vicino alla new connection (si genera cosi un get chiamato new request)
+
+      2) chiamiamolo show, ed inseriamo l'url (ecco un esempio qui sotto):
+
+      http://localhost:3000/movies/1 
+
+      IMPORTANTE! inseriamo davanti 1 siccome sarà l'id da ricercare del movie
+
+      se tutto va bene, su postman comparirà il singolo elemento del movie 
