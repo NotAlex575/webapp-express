@@ -108,6 +108,24 @@ __________________________________________________________
         "test": "echo \"Error: no test specified\" && exit 1"
         },
 
+    5) Creo il file app.js:
+
+        Scriviamo nel nostro app.js i comandi necessari per importare express, utilizzarlo e creare la rotta base nonché mettere in ascolto il server su una porta definita da noi (tipicamente la 3000)
+
+        1) Importiamo express:
+            const express = require('express');
+
+        2) Definiamo la variabile app che contiene un’istanza di express:
+            const app = express();
+
+        3) Definiamo la porta sulla quale deve rimanere in ascolto il server:
+            const port = 3000;
+
+        4) Definiamo la rotta base della nostra applicazione:
+            app.get('/', (req, res) => { /* codice */ })
+
+        5) Diciamo al server di rimanere in ascolto sulla porta 3000:
+            app.listen(port, () => { /* messaggio */ })
    
 
 
