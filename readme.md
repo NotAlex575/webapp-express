@@ -82,5 +82,32 @@ creiamo il db su MySQL Workbench!
 
     se tutto va bene, avrai importato il tuo database, e ti dovrebbe mostrare "Import completed" senza errori!
 
+__________________________________________________________
+
+2) CREAZIONE PROGETTO WEBAPP
+
+    dopo creato il db, creiamo il nostro progetto attraverso questa steplist:
+
+    1) Creo la cartella del progetto e la apro con vscode per lanciare il comando npm init e, quando compare la voce "entry point: ", inseriamo app.js
+
+    2) Eseguo i seguenti comandi:
+     
+       1) npm install express
+       
+       2) npm install mysql2 
+
+    3) Se non presente creiamo il file .gitignore in cui mettere la cartella node_modules (se devi importare in git questo è il momento, in modo tale che non importi subito il node_modules)
+
+    4) Aggiorno il file package.json inserendo i comandi start (node app.js) e watch (node --watch app.js)
+
+        struttura:
+
+        "scripts": {
+        "start": "node app.js",
+        "watch": "node --watch app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+        },
+
+   
 
 
