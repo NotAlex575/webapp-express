@@ -1,12 +1,15 @@
 //importo express
 const express = require('express');
 
+//importo il pacchetto cors
+const cors = require("cors");
+
 //creo l'instanza dell'app attraverso il metodo express che ho importato
 const connection = require("./data/db");
 const app = express();
 
 //definisco il numero di porta sul cui deve girare l'applicazione
-const port = 3000;
+const port = process.env.PORT;
 
 //importo il router
 const moviesRouter = require("./routers/moviesRouter");
@@ -20,6 +23,9 @@ app.get("/", (req,res) =>{
 
 //definisco le rotte per i movies
 app.use("/movies", moviesRouter);
+
+//registro il middleware per il cors 
+app.use(cors({origin: process.env.FE_APP}))
 
 //utilizzo globalmente il middleware errorsHandler
 app.use(errorsHandler);
