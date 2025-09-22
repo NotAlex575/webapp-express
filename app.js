@@ -15,8 +15,12 @@ app.use(cors({origin: process.env.FE_APP}))
 
 //importo il router
 const moviesRouter = require("./routers/moviesRouter");
+//importo i middlewares
 const errorsHandler = require("./middlewares/errorsHandler.js");
 const notFound = require("./middlewares/notFound.js");
+const imagePathMiddleware = require("./middlewares/imagePathMiddleware.js");
+
+app.use(imagePathMiddleware);
 
 //definisco la rotta base
 app.get("/", (req,res) =>{
